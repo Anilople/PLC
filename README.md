@@ -1,5 +1,7 @@
 ## 根据表达式生成PLC的逻辑代码
 
+Programmable Logic Controller
+
 PLC expression generator.
 
 在PLC中, 如果想让输入`0`和输入`1`异或后输出到`1002`中, 
@@ -72,7 +74,7 @@ OUT 1002
 
 ![](xor(a,b).PNG)
 
-###更复杂的例子
+### 更复杂的例子
 
 #### 不带TIM
 
