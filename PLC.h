@@ -226,6 +226,74 @@ void keep(n1 a,n2 b,n3 number)
 	keep(number);
 }
 
+
+// 注意, 以下指令中默认有前缀@
+
+// 清除加法上的进位CY, 以及减法的借位CY
+void clc()
+{
+	cout << "@CLC" << endl;
+}
+
+
+// 比较结果存在3个寄存器中
+// P_GT, P_EQ, P_LT
+void cmp(string a, string b)
+{
+	cout << "CMP " << a << " " << b << endl;
+}
+
+#define CP1H
+
+#ifndef CP1H // 当使用的不是CP1H时, 默认使用CP2M*
+
+void inc(string a)
+{
+	cout << "@INC " << a << endl;
+}
+void dec(string a)
+{
+	cout << "@DEC " << a << endl;
+}
+// 当捕获到上升沿, c = a + b
+void add(string a, string b, string c)
+{
+	cout << "@ADD " << a << " " << b << " " << c << endl;
+}
+// 当捕获到上升沿, c = a - b
+void sub(string a, string b, string c)
+{
+	cout << "@SUB " << a << " " << b << " " << c << endl;
+}
+#endif // !CP1H
+
+
+#ifdef CP1H // 当用的是CP1H时
+
+void inc(string a)
+{
+	cout << "@++B " << a << endl;
+}
+
+void dec(string a)
+{
+	cout << "@--B " << a << endl;
+}
+
+// 当捕获到上升沿, c = a + b
+void add(string a, string b, string c)
+{
+	cout << "@+BC " << a << " " << b << " " << c << endl;
+}
+
+// 当enable捕获到上升沿, c = a - b
+void sub(string a, string b, string c)
+{
+	cout << "@-BC " << a << " " << b << " " << c << endl;
+}
+
+#endif // CP1H
+
 class PLC
 {
 public:
@@ -259,7 +327,7 @@ class PLCEXP
 {
 public:
 	PLCEXP(){}
-	PLCEXP(int a) { node = new PLC{a }; isLeaf = true; left = right = NULL;}
+	PLCEXP(int a) { node = new PLC{ a }; isLeaf = true; left = right = NULL;}
 	PLCEXP(const string &a) { node = new PLC{ a }; isLeaf = true; left = right = NULL; }
 	// PLCEXP(PLC a) { node = new PLC(a); isLeaf = true; left = right = NULL;}
 	PLCEXP(char ope,PLCEXP left,PLCEXP right) 
