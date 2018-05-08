@@ -243,7 +243,7 @@ void cmp(string a, string b)
 	cout << "CMP " << a << " " << b << endl;
 }
 
-#define CP1H
+//#define CP1H
 
 #ifndef CP1H // 当使用的不是CP1H时, 默认使用CP2M*
 
