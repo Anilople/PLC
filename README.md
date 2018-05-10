@@ -125,7 +125,7 @@ out(wait);
 
 `wait = !up * down + up * !down`的表达式树为
 
-<img src="PLC/picture/tree_wait.png" width="400">
+<img src="tree_wait.png" width="400">
 
 注意到非叶子节点都是运算符, 叶子节点要么是具体的变量, 要么是这个变量的非. 如果在程序中有这样一颗表达式树, 怎样让它转为具体的PLC助记符代码呢? 
 
@@ -165,7 +165,7 @@ ORLD
 
 从表达式树来看, 需要重载的运算符仅有3个, 即`!, *`和`+`, 这里为了简洁性**先不考虑`!`.** 我们知道一颗表达式树可以仅由单个叶子构成, 那就从这单个叶子开始吧, 假设我们有两颗表达式树`A`和`B`, 现在知道`C = A * B`, 怎么生成`C`对应的表达式呢? 示例图如下.
 
-<img src="PLC/picture/andLeaf.png">
+<img src="andLeaf.png">
 
 对应的C++重载运算符`*`为
 
@@ -181,7 +181,7 @@ friend PLCEXP operator * (const PLCEXP &a, const PLCEXP &b) // and
 
 如果要`C = A + B也是类似的原理`
 
-<img src="PLC/picture/orleaf.png">
+<img src="orleaf.png">
 
 对应的C++函数重载为
 
@@ -195,7 +195,7 @@ friend PLCEXP operator + (const PLCEXP &a, const PLCEXP &b) // or
 
 但是如果要`C = (A * B) + (A + B)`呢? 只需要再进行组合就行了.如下图
 
-<img src="PLC/picture/ortree.png">
+<img src="ortree.png">
 
 以上的这些操作可以理解为二叉树的合并, 即将**运算符的左边和右边分别当成左孩子和右孩子, 运算符当成树根节点, 然后组成一颗新的二叉树**.
 
@@ -271,7 +271,7 @@ OUT 1002
 
 ##### 相应的PLC梯形图
 
-![](PLC/picture/xor(a,b).PNG)
+![](xor(a,b).PNG)
 
 #### 更复杂的逻辑表达式
 
@@ -321,7 +321,7 @@ OUT 1004
 
 ##### 相应的PLC梯形图
 
-![](PLC/picture/2.PNG)
+![](2.PNG)
 
 #### 仅仅是数字吗?
 
