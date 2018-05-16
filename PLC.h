@@ -11,17 +11,6 @@ pair<bool, T> operator!(pair<bool, T> a)
 	return a;
 }
 
-// template<typename T>
-// ostream & operator<<(ostream & os,const pair<bool, T> &a)
-// {
-	// if (a.first == false)
-	// {
-		// os << "! ";
-	// }
-	// os << a.second;
-	// return os;
-// }
-
 void orld()
 {
 	cout << "ORLD" << endl;
